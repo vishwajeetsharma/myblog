@@ -39,6 +39,15 @@ def register(request):
         form_password2 = request.POST['password2']
         form_fname = request.POST['firstname']
         form_lname = request.POST['lastname']
+
+        if form_password != form_password2:
+            messages.error(request, "Both passwords should be same")
+            return redirect(register)
+        
+        if User.objects.get(username=form_username).DoesNotExist:
+            messages.error(request, "username already taken")
+            return redirect(register)
+
         user = User.objects.create_user(form_username, form_email, form_password)
         user.first_name = form_fname
         user.last_name = form_lname

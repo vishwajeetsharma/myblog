@@ -5,8 +5,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MyBlog - Register</title>
+    <style>
+        .error{
+            color:red;
+        }
+        .success{
+            color:green
+        }
+    </style>
 </head>
 <body>
+
+    {% for i in messages %}
+   
+   
+       <p class={{i.tags}}>{{i}}</p>
+   
+   
+   {% endfor %}
     <form action={% url 'register' %} method="post">
         {% csrf_token %}
         Username: <input type="text" name="username" required> <br>
@@ -17,5 +33,7 @@
         Confirm Password: <input type="password" name="password2" required> <br>
         <input type="submit" value="Register">
     </form>
+    <br>
+    <a href={% url 'login' %}>login</a>
 </body>
 </html>
