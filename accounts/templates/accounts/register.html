@@ -25,10 +25,10 @@
    {% endfor %}
     <form action={% url 'register' %} method="post">
         {% csrf_token %}
-        Username: <input type="text" name="username" required> <br>
-        Email: <input type="email" name="email" required> <br>
-        First Name: <input type="text" name="firstname" > <br>
-        Last Name: <input type="text" name="lastname"> <br>
+        Username: <input type="text" name="username" value="{{username}}" required> <br>
+        Email: <input type="email" name="email" value="{{email}}" required> <br>
+        First Name: <input type="text" name="firstname" value="{{first_name}}" > <br>
+        Last Name: <input type="text" name="lastname" value="{{last_name}}"> <br>
         Password: <input type="password" name="password" required> <br>
         Confirm Password: <input type="password" name="password2" required> <br>
         <input type="submit" value="Register">

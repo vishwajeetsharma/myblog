@@ -1,0 +1,13 @@
+{% extends 'blog/base.html' %}
+{% block title %}{{blogp.name}}{% endblock title %}
+
+{% block body %}
+
+<img src="/media/{{blogp.main_image}}" width="700px" class="" >
+<p>{{blogp.date}}</p>
+
+<h1>{{blogp.name}}</h1>
+
+<p>{{blogp.content}}</p>
+
+{% endblock body %}

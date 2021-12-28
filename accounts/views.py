@@ -40,13 +40,30 @@ def register(request):
         form_fname = request.POST['firstname']
         form_lname = request.POST['lastname']
 
+        data_dict = {
+            "username":form_username,
+            "email":form_email,
+            "first_name":form_fname,
+            "last_name":form_lname
+        }
+
         if form_password != form_password2:
             messages.error(request, "Both passwords should be same")
-            return redirect(register)
         
         if User.objects.get(username=form_username).DoesNotExist:
             messages.error(request, "username already taken")
-            return redirect(register)
+
+        if (not form_fname ):
+            messages.error(request, "First name Required!!")
+
+        if (not form_lname ):
+            messages.error(request, "Last name Required!!")
+
+        if len(form_fname) < 3:
+            messages.error(request, "First name should be more than 3 characters")
+
+        if messages.error:
+            return render(request, "accounts/register.html", data_dict)
 
         user = User.objects.create_user(form_username, form_email, form_password)
         user.first_name = form_fname
