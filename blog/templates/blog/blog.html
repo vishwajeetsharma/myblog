@@ -10,6 +10,7 @@
         <div class="container mb-4">
             <p> {{blog.id}} </p>
             <p> {{blog.date}} </p>
+            <p> <a href="/blog/category/{{blog.category}}">{{blog.category}}</a> </p>
             <img src="/media/{{blog.featured_image}}" width="250px" >
             <p> {{blog.name}} </p>
             <p> {{blog.description}} </p>
@@ -20,5 +21,6 @@
 
 
     {% endfor %}
+
 
 {% endblock body %}

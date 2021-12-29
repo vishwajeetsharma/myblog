@@ -5,9 +5,10 @@
 
 <img src="/media/{{blogp.main_image}}" width="700px" class="" >
 <p>{{blogp.date}}</p>
+<p> <a href="/blog/category/{{blogp.category}}">{{blogp.category}}</a> </p>
 
 <h1>{{blogp.name}}</h1>
 
-<p>{{blogp.content}}</p>
+<p>{{blogp.content|safe}}</p>
 
 {% endblock body %}
