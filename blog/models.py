@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 class Category(models.Model):
@@ -23,3 +24,12 @@ class blogpost(models.Model):
 
     def __str__(self):
         return self.name+" - "+str(self.date)
+
+class Comment(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    blog_post = models.ForeignKey(blogpost, on_delete=models.CASCADE)
+    date = models.DateTimeField(auto_now=True)
+    comment = models.TextField()
+
+    def __str__(self):
+        return str(self.user)+" - "+self.comment

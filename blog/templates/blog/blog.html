@@ -3,6 +3,12 @@
 {% block body %}
 
     <h1>Hello, World!! Blog</h1>
+    {% for i in allcats %}
+        <p><b><i>{{i.name}}</i></b></p>
+    {% endfor %}
+    <br><br><br>
+
+
 
     {% for blog in blogs %}
 

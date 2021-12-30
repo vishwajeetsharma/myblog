@@ -11,4 +11,18 @@
 
 <p>{{blogp.content|safe}}</p>
 
+
+
+{% for i in comments %}
+
+    <div class="container mb-4">
+        <p>{{i.user}}</p>
+        <p>{{i.date}}</p>
+        <p>{{i.comment}}</p>
+    </div>
+    <br><br><br>
+
+{% endfor %}
+
+
 {% endblock body %}
