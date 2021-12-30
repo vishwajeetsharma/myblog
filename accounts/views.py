@@ -1,3 +1,4 @@
+from django.contrib.messages.api import get_messages
 from django.http import request
 from django.shortcuts import render, HttpResponse, redirect
 from django.contrib.auth import authenticate
@@ -50,7 +51,7 @@ def register(request):
         if form_password != form_password2:
             messages.error(request, "Both passwords should be same")
         
-        if User.objects.get(username=form_username).DoesNotExist:
+        if User.objects.filter(username=form_username).count() > 0:
             messages.error(request, "username already taken")
 
         if (not form_fname ):
@@ -62,7 +63,7 @@ def register(request):
         if len(form_fname) < 3:
             messages.error(request, "First name should be more than 3 characters")
 
-        if messages.error:
+        if len(get_messages(request)) > 0:
             return render(request, "accounts/register.html", data_dict)
 
         user = User.objects.create_user(form_username, form_email, form_password)
