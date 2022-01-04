@@ -1,5 +1,16 @@
 {% extends 'blog/base.html' %}
 {% block title %}Blog{% endblock title %}
+
+{% block nav-links %}
+
+{% for i in featured_cat %}
+<li class="nav-item">
+    <a class="nav-link" href="/blog/category/{{i.name}}">{{i.name}}</a>
+</li>
+{% endfor %}
+{% endblock nav-links %}
+
+
 {% block body %}
 
     <h1>Hello, World!! Blog</h1>
@@ -8,7 +19,25 @@
     {% endfor %}
     <br><br><br>
 
+    <h1>Start featured posts</h1>
+    {% for blog in featured_posts %}
 
+
+        <div class="container mb-4">
+            <p> {{blog.id}} </p>
+            <p> {{blog.date}} </p>
+            <p> <a href="/blog/category/{{blog.category}}">{{blog.category}}</a> </p>
+            <img src="/media/{{blog.featured_image}}" width="250px" >
+            <p> {{blog.name}} </p>
+            <p> {{blog.description}} </p>
+            <a href="/blog/{{blog.slug}}">Read more</a>
+        </div>
+        <br><br><br><br>
+
+
+
+    {% endfor %}
+    <h1>End featured posts</h1>
 
     {% for blog in blogs %}
 

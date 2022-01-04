@@ -1,6 +1,7 @@
 {% extends 'blog/base.html' %}
 {% block title %}{{blogp.name}}{% endblock title %}
 
+
 {% block body %}
 
 <img src="/media/{{blogp.main_image}}" width="700px" class="" >
@@ -12,6 +13,20 @@
 <p>{{blogp.content|safe}}</p>
 
 
+<form action="{% url 'blogpostComment' %}" method="post">
+    {% csrf_token %}
+    <input type="hidden" name="slug" value="{{blogp.slug}}">
+    Comment: <textarea name="comment" cols="30" rows="10"></textarea>
+    <input type="submit" value="Comment">
+</form>
+
+{% for i in messages %}
+
+
+<p class={{i.tags}}>{{i}}</p>
+
+
+{% endfor %}
 
 {% for i in comments %}
 

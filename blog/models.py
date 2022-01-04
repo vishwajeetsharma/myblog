@@ -12,7 +12,7 @@ class Category(models.Model):
 class blogpost(models.Model):
     name = models.CharField(max_length=60)
     description = models.CharField(max_length=255)
-    slug = models.CharField(max_length=100)
+    slug = models.CharField(max_length=100, unique=True)
 
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     featured_post = models.BooleanField(default=False)
@@ -26,7 +26,8 @@ class blogpost(models.Model):
         return self.name+" - "+str(self.date)
 
 class Comment(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    # user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.CharField(max_length=155)
     blog_post = models.ForeignKey(blogpost, on_delete=models.CASCADE)
     date = models.DateTimeField(auto_now=True)
     comment = models.TextField()
