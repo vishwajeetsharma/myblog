@@ -34,3 +34,6 @@ class Comment(models.Model):
 
     def __str__(self):
         return str(self.user)+" - "+self.comment
+
+class Image(models.Model):
+    image = models.ImageField(upload_to="blog/blog-images/")
